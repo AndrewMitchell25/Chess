@@ -1,3 +1,5 @@
+import React from 'react';
+
 class Piece extends React.Component{
     constructor(x, y, isWhite, img){
         this.white = isWhite;
@@ -12,9 +14,9 @@ class King extends Piece{
         super(x, y, isWhite);
         this.value = 100;
         if(isWhite){
-            this.img = "whiteKing";
+            this.img = "wk";
         } else {
-            this.img = "blackKing";
+            this.img = "bK";
         }
     }
 }
