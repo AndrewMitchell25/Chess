@@ -10,5 +10,6 @@ export default class Pawn extends Piece {
         }
 
         this.value = 1;
+        this.hasMoved = false;
     }
 }

@@ -11,4 +11,12 @@ export default class Queen extends Piece {
 
         this.value = 9;
     }
+
+    render() {
+        return (
+            <div className="piece">
+                <img src={this.pic} alt="Queen"/>
+            </div>
+        )
+    }
 }
