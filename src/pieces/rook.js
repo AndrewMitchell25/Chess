@@ -11,4 +11,12 @@ export default class Rook extends Piece {
 
         this.value = 5;
     }
+
+    render() {
+        return (
+            <div className="piece">
+                <img src={this.pic} alt="Rook"/>
+            </div>
+        )
+    }
 }

@@ -1,11 +1,22 @@
 import React from "react";
 
-export default function Square(props) {
-    return(
-        <div className={"square " + props.color + "-square"}
-            style={props.style}>
-                {props.piece}
-                {props.x},{props.y}
-        </div>
-    )
+export default class Square extends React.Component {
+    constructor(x, y, id, color, piece, style){
+        super();
+        this.x = x;
+        this.y = y;
+        this.id = id;
+        this.color = color;
+        this.style = style;
+        this.piece = piece;
+    }
+    
+    render(){
+        return(
+            <div className={"square " + this.color + "-square"}
+                style={this.style}>
+                    {this.piece}
+            </div>
+        )
+    }
 }

@@ -11,4 +11,12 @@ export default class Bishop extends Piece {
 
         this.value = 3;
     }
+
+    render() {
+        return (
+            <div className="piece">
+                <img src={this.pic} alt="Bishop"/>
+            </div>
+        )
+    }
 }
