@@ -30,6 +30,10 @@ body {
   background-color: RGB(234,240,206);
 }
 
+.row{
+  display: table;
+}
+
 .piece{
   background: transparent;
   border: 1px solid transparent;
