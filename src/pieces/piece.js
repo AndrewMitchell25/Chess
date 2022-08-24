@@ -1,5 +1,5 @@
 export default class Piece{
-    constructor(x, y, isWhite, pic){
+    constructor(x, y, isWhite, pic, style){
         this.x = x;
         this.y = y;
         this.isWhite = isWhite;
@@ -7,6 +7,7 @@ export default class Piece{
 
         this.taken = false;
         this.value = 0;
+        this.style = style;
     }
 
     withinBounds(x,y) {

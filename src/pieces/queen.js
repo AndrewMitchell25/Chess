@@ -1,8 +1,8 @@
 import Piece from "./piece";
 
 export default class Queen extends Piece {
-    constructor(x, y, isWhite){
-        super(x, y, isWhite);
+    constructor(x, y, isWhite, style){
+        super(x, y, isWhite, style);
         if(isWhite){
             this.pic = "https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg";
         } else {
@@ -14,7 +14,7 @@ export default class Queen extends Piece {
 
     render() {
         return (
-            <div className="piece">
+            <div className={"piece " + this.style}>
                 <img src={this.pic} alt="Queen"/>
             </div>
         )

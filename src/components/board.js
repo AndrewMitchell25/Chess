@@ -12,7 +12,7 @@ export default class Board extends React.Component {
         super()
         this.pieces = [];
         this.squares = [];
-        
+
         this.pieces.push(new Rook(0, 0, false))
         this.pieces.push(new Knight(0, 1, false))
         this.pieces.push(new Bishop(0, 2, false))
@@ -74,9 +74,7 @@ export default class Board extends React.Component {
         }
     }
 
-
     render() {
-
         this.assignPieces();
         return (
             <div>
