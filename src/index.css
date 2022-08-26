@@ -15,8 +15,6 @@ body {
   font-weight: bold;
   line-height: 34px;
   height: 48px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 48px;
@@ -46,9 +44,12 @@ body {
   text-align: center;
   width: 48px;
   position: absolute;
+  cursor: -webkit-grab;
 }
 
-.moving{
+.dragging{
+  cursor: -webkit-grabbing;
   border-color: black;
   border-style: solid;
+  z-index: 2;
 }

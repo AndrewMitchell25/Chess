@@ -1,13 +1,17 @@
-export default class Piece{
-    constructor(x, y, isWhite, pic, style){
-        this.x = x;
-        this.y = y;
-        this.isWhite = isWhite;
-        this.pic = pic;
+import React from "react";
 
+export default class Piece extends React.Component{
+
+    constructor(props){
+        super(props);
+
+        this.pic = "";
         this.taken = false;
+        this.dragging = false;
         this.value = 0;
-        this.style = style;
+        this.state = {
+
+        }
     }
 
     withinBounds(x,y) {
@@ -15,5 +19,20 @@ export default class Piece{
             return true;
         }
         return false;
+    }
+
+    handleMouseDown = (e) => {
+        this.dragging = true;
+        console.log(this.dragging)
+        this.setState({style: "dragging"});
+        console.log(this.x)
+    }
+
+    render() {
+        return (
+            <div className={"piece " + this.props.style} onMouseDown={this.handleMouseDown}>
+                <img src={this.pic} alt={this.value}/>
+            </div>
+        )
     }
 }

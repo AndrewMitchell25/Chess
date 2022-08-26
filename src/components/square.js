@@ -1,21 +1,12 @@
 import React from "react";
 
 export default class Square extends React.Component {
-    constructor(x, y, id, color, piece, style){
-        super();
-        this.x = x;
-        this.y = y;
-        this.id = id;
-        this.color = color;
-        this.style = style;
-        this.piece = piece;
-    }
-    
     render(){
+
         return(
-            <div className={"square " + this.color + "-square"}
-                style={this.style}>
-                    {this.piece}
+            <div className={"square " + this.props.color + "-square"}
+                style={this.props.style}>
+                    {this.props.piece !== undefined ? this.props.renderPiece(this.props.piece.type, this.props.piece.id, this.props.piece.style, this.props.piece.isWhite, this.props.handlePieceClick) : null}
             </div>
         )
     }
