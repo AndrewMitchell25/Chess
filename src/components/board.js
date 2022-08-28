@@ -60,7 +60,6 @@ export default class Board extends React.Component {
                 if((j%2===0 && i%2===0) || (j%2!==0 && i%2!==0)){
                     color = "light";
                 }
-                //let square = <Square x={i} y={j} id={i*8+j} color={color} key={i*8+j} pieces={this.state.pieces}/>;
                 let square = {id:i*8+j, color: color, style: null}
                 this.state.squares.push(square);
                 row.push(square);
@@ -69,80 +68,101 @@ export default class Board extends React.Component {
         }
     }
 
-    renderSquare(id, style, color){
+    renderSquare(square){
         return(
-            <Square key={id} 
-                style={style} 
-                color={color} 
-                piece={this.state.pieces.find(piece => piece.x*8 + piece.y === id)} 
-                renderPiece={this.renderPiece} 
+            <Square key={square.id} 
+                style={square.style} 
+                color={square.color} 
+                piece={this.state.pieces.find(piece => piece.x*8 + piece.y === square.id)} 
+                renderPiece={this.renderPiece}
+                updateState={this.updateState} 
                 />
         );
     }
 
-    renderPiece(type, x, y, id, style, isWhite){
-        
-        if(type === "King") {
+    renderPiece(piece, updateState){        
+        if(piece.type === "King") {
             return(
-                <King key={id} 
-                style={style} 
-                x={x}
-                y={y} 
-                isWhite={isWhite}
+                <King key={piece.id} 
+                style={piece.style} 
+                x={piece.x}
+                y={piece.y} 
+                isWhite={piece.isWhite}
+                updateState={updateState}
                 />
             );
-        } else if(type === "Queen") {            
+        } else if(piece.type === "Queen") {            
             return(
-                <Queen key={id} 
-                style={style} 
-                x={x}
-                y={y}  
-                isWhite={isWhite}
+                <Queen key={piece.id} 
+                style={piece.style} 
+                x={piece.x}
+                y={piece.y}  
+                isWhite={piece.isWhite}
+                updateState={updateState}
                 />
             );
-        } else if(type === "Rook") {            
+        } else if(piece.type === "Rook") {            
             return(
-                <Rook key={id} 
-                style={style} 
-                x={x}
-                y={y}  
-                isWhite={isWhite}
+                <Rook key={piece.id} 
+                style={piece.style} 
+                x={piece.x}
+                y={piece.y}  
+                isWhite={piece.isWhite}
+                updateState={updateState}
                 />
             );
-        } else if(type === "Bishop") {            
+        } else if(piece.type === "Bishop") {            
             return(
-                <Bishop key={id} 
-                style={style} 
-                x={x}
-                y={y}  
-                isWhite={isWhite}
+                <Bishop key={piece.id} 
+                style={piece.style} 
+                x={piece.x}
+                y={piece.y}  
+                isWhite={piece.isWhite}
+                updateState={updateState}
                 />
             );
-        } else if(type === "Knight") {            
+        } else if(piece.type === "Knight") {            
             return(
-                <Knight key={id} 
-                style={style} 
-                x={x}
-                y={y} 
-                isWhite={isWhite}
+                <Knight key={piece.id} 
+                style={piece.style} 
+                x={piece.x}
+                y={piece.y} 
+                isWhite={piece.isWhite}
+                updateState={updateState}
                 />
             );
-        } else if(type === "Pawn") {            
+        } else if(piece.type === "Pawn") {            
             return(
-                <Pawn key={id} 
-                style={style} 
-                x={x}
-                y={y} 
-                isWhite={isWhite}
+                <Pawn key={piece.id} 
+                style={piece.style} 
+                x={piece.x}
+                y={piece.y} 
+                isWhite={piece.isWhite}
+                updateState={updateState}
                 />
             );
         } 
     }
 
+    updateState = (type, x,y) => {
+        const newPieces = this.state.pieces.map(piece => {
+            if(piece.x === x && piece.y === y) {
+                if(type==="down"){
+                    return {...piece, style: "dragging" }
+                } else {
+                    return {...piece, style: "" }
+                }
+            }
+            return piece;
+        })
+
+        this.setState({pieces: newPieces })
+    }
+
     render() {
         return (
             <div>
-                {this.state.board.map((row, i) => <div className="row" key={i}>{row.map(square => this.renderSquare(square.id, square.style, square.color))}</div>)}                
+                {this.state.board.map((row, i) => <div className="row" key={i}>{row.map(square => this.renderSquare(square))}</div>)}                
             </div>
         )
     }

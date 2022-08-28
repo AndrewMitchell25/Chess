@@ -21,16 +21,12 @@ export default class Piece extends React.Component{
         return false;
     }
 
-    handleMouseDown = (e) => {
-        this.dragging = true;
-        console.log(this.dragging)
-        this.setState({style: "dragging"});
-        console.log(this.x)
-    }
-
     render() {
         return (
-            <div className={"piece " + this.props.style} onMouseDown={this.handleMouseDown}>
+            <div className={"piece " + this.props.style} 
+                onMouseDown={() => this.props.updateState("down", this.props.x, this.props.y)}
+                onMouseUp={() => this.props.updateState("up", this.props.x, this.props.y)}
+                >
                 <img src={this.pic} alt={this.value}/>
             </div>
         )
