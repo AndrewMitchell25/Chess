@@ -7,18 +7,7 @@ export default class Piece extends React.Component{
 
         this.pic = "";
         this.taken = false;
-        this.dragging = false;
         this.value = 0;
-        this.state = {
-
-        }
-    }
-
-    withinBounds(x,y) {
-        if(x >= 0 && x < 8 && y >= 0 && y < 8){
-            return true;
-        }
-        return false;
     }
 
     render() {

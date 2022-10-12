@@ -13,7 +13,8 @@ export default class Board extends React.Component {
         this.state = {
             pieces : [],
             squares : [],
-            board : []
+            board : [],
+            mousePos : {x: 0, y:0}
         }
 
         this.state.pieces.push({type: "Rook", x: 0, y: 0, isWhite: false, style: ""})
@@ -88,6 +89,7 @@ export default class Board extends React.Component {
                 x={piece.x}
                 y={piece.y} 
                 isWhite={piece.isWhite}
+                dragging={piece.dragging}
                 updateState={updateState}
                 />
             );
@@ -98,6 +100,7 @@ export default class Board extends React.Component {
                 x={piece.x}
                 y={piece.y}  
                 isWhite={piece.isWhite}
+                dragging={piece.dragging}
                 updateState={updateState}
                 />
             );
@@ -108,6 +111,7 @@ export default class Board extends React.Component {
                 x={piece.x}
                 y={piece.y}  
                 isWhite={piece.isWhite}
+                dragging={piece.dragging}
                 updateState={updateState}
                 />
             );
@@ -118,6 +122,7 @@ export default class Board extends React.Component {
                 x={piece.x}
                 y={piece.y}  
                 isWhite={piece.isWhite}
+                dragging={piece.dragging}
                 updateState={updateState}
                 />
             );
@@ -128,6 +133,7 @@ export default class Board extends React.Component {
                 x={piece.x}
                 y={piece.y} 
                 isWhite={piece.isWhite}
+                dragging={piece.dragging}
                 updateState={updateState}
                 />
             );
@@ -138,6 +144,7 @@ export default class Board extends React.Component {
                 x={piece.x}
                 y={piece.y} 
                 isWhite={piece.isWhite}
+                dragging={piece.dragging}
                 updateState={updateState}
                 />
             );
@@ -150,7 +157,7 @@ export default class Board extends React.Component {
                 if(type==="down"){
                     return {...piece, style: "dragging" }
                 } else {
-                    return {...piece, style: "" }
+                    return {...piece, dragging: false, style: "" }
                 }
             }
             return piece;
@@ -159,10 +166,18 @@ export default class Board extends React.Component {
         this.setState({pieces: newPieces })
     }
 
+    handleMouseMove(event){
+        this.setState({
+            mousePos: {x: event.screenX, y: event.screenY}
+        });
+      };
+
     render() {
         return (
-            <div>
-                {this.state.board.map((row, i) => <div className="row" key={i}>{row.map(square => this.renderSquare(square))}</div>)}                
+            <div className="board" onMouseMove={(event) => this.handleMouseMove(event)}>
+                <div>
+                    {this.state.board.map((row, i) => <div className="row" key={i}>{row.map(square => this.renderSquare(square))}</div>)}                
+                </div>
             </div>
         )
     }
